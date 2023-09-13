@@ -1,7 +1,7 @@
 import {InferSelectModel } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const transaction = sqliteTable("transaction", {
+export const transactions = sqliteTable("transactions", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   amount: integer("amount", { mode: "number" }).notNull(),
   date: text("date", { mode: "text" }).notNull(),
@@ -10,7 +10,7 @@ export const transaction = sqliteTable("transaction", {
   type: integer("type", { mode: "number" }).notNull(),
 })
 
-export const user = sqliteTable("user", {
+export const users = sqliteTable("users", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     name: text("name", { mode: "text" }).notNull(),
     email: text("email", { mode: "text" }).notNull(),
@@ -19,5 +19,5 @@ export const user = sqliteTable("user", {
 })
 
 
-export type Todo = InferSelectModel<typeof transaction>;
-export type user = InferSelectModel<typeof user>;
+export type Transaction = InferSelectModel<typeof transactions>;
+export type User = InferSelectModel<typeof users>;
