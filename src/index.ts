@@ -1,14 +1,15 @@
 import { Elysia } from "elysia";
 import { swagger } from '@elysiajs/swagger'
-import { getTransactions } from "./controllers/transactionController";
+import { getTransaction, getTransactions } from "./controllers/transactionController";
 
-const app = new Elysia({ prefix: '/api' })
+const app = new Elysia()
   .use(swagger())
-  .group("/v1", app => app 
+  .group("/api/v1", app => app 
     .get("/", () => "Hello Elysia")
     
     .group("/transactions", app => app
         .get("/", getTransactions)
+        .get("/:id", getTransaction)
     )
 
     .group("/users", app => app
