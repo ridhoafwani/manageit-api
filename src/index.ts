@@ -11,9 +11,6 @@ const app = new Elysia()
         .get("/", getTransactions)
         .get("/:id", getTransaction)
     )
-
-    .group("/users", app => app
-    )
     
   )
   

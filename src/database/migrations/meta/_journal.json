@@ -8,6 +8,20 @@
       "when": 1694532646221,
       "tag": "0000_certain_human_robot",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1694598179557,
+      "tag": "0001_naive_celestials",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1695392470267,
+      "tag": "0002_brainy_plazm",
+      "breakpoints": true
     }
   ]
 }
