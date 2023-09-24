@@ -12,18 +12,21 @@ interface GetTransactionsParams {
 }
 
 interface PostTransactionBody {
-
+    userId: string,
+    amount: number,
+    note: string,
+    type: number
 }
 
 export const getTransactions = async ({params}: {params: GetTransactionsParams}) => {
-    const result = await db.select().from(transactions).where(eq(transactions.userId, Number(params.userId)));
+    const result = await db.select().from(transactions).where(eq(transactions.userId, params.userId));
     return result;
 }
 
 export const getTransaction = async ({params}: {params: GetTransactionParams}) => {
     const result = await db.select().from(transactions).where(
         and(
-            eq(transactions.userId, Number(params.userId)), 
+            eq(transactions.userId, params.userId), 
             eq(transactions.id, Number(params.transactionId))
         )
     );
