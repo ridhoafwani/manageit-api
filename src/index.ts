@@ -10,6 +10,7 @@ const app = new Elysia()
     .group("/transactions", app => app
         .get("/", getTransactions)
         .get("/:id", getTransaction)
+        .post("/", () => postTransaction)
     )
     
   )
