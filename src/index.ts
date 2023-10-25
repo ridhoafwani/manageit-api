@@ -1,6 +1,7 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { swagger } from '@elysiajs/swagger'
-import { getTransaction, getTransactions } from "./controllers/transactionController";
+import { getTransaction, getTransactions, postTransaction } from "./controllers/transactionController";
+import transactionSchema from "./model/transactionSchema";
 
 const app = new Elysia()
   .use(swagger())
@@ -8,9 +9,12 @@ const app = new Elysia()
     .get("/", () => "Hello Elysia")
     
     .group("/transactions", app => app
-        .get("/", getTransactions)
-        .get("/:id", getTransaction)
-        .post("/", () => postTransaction)
+        .get("/:userId", getTransactions)
+        .get("/:userId/:transactionId", getTransaction, )
+        .post("/", postTransaction, {
+          body: transactionSchema
+        })
+
     )
     
   )

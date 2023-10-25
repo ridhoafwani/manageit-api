@@ -1,21 +1,27 @@
 import { eq, and } from "drizzle-orm";
 import { db } from "../database";
 import { transactions } from "../database/schema";
+import type transactionSchema from "../model/transactionSchema";
+import {t} from "elysia"
 
-interface GetTransactionParams {
+type GetTransactionParams = {
     userId: string,
     transactionId: string;
 }
 
-interface GetTransactionsParams {
+type GetTransactionsParams = {
     userId: string,
 }
 
-interface PostTransactionBody {
+type PostTransactionBody = {
     userId: string,
     amount: number,
     note: string,
     type: number
+}
+
+interface Set {
+    status: number,
 }
 
 export const getTransactions = async ({params}: {params: GetTransactionsParams}) => {
@@ -33,7 +39,7 @@ export const getTransaction = async ({params}: {params: GetTransactionParams}) =
     return result;
 }
 
-export const postTransaction = async ({body, set}: {body: PostTransactionBody}) => {
-    const result = await db.insert(body).into(transactions);
-    set.status(201);
+export const postTransaction = async ({body}: {body: PostTransactionBody}) => {
+    const result = await db.insert(transactions).values(body);
+    return result
 }
