@@ -7,7 +7,7 @@ export const transactions = sqliteTable("transactions", {
   timestamp: text("timestamp").default(sql`CURRENT_TIMESTAMP`),
   note: text("note", { mode: "text" }).notNull(),
   userId: text("userId", { mode: "text" }).notNull(),
-  type: integer("type", { mode: "number" }).notNull(),
+  type: text("type", { enum: ['INCOME', 'EXPENSE'] }).notNull(),
 })
 
 export type Transaction = InferSelectModel<typeof transactions>;

@@ -7,5 +7,4 @@ export default new Elysia()
   .group('/api/v1', app => app
     .get('/', () => 'Hello Elysia')
     .use(transactionRoute)
-
   )
